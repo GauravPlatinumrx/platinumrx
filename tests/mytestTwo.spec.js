@@ -53,7 +53,7 @@ await page.waitForTimeout(2000);
 
 
 
-test('test2', async ({ page }) => {
+test.only('test2', async ({ page }) => {
     // Open WebSite    
     await page.goto('https://flexipill-ui-new-staging.vercel.app')
     //click on login buttton
@@ -88,26 +88,60 @@ test('test2', async ({ page }) => {
     await page.click("(//div[@class='AddToCartDropdown_arrow__pFEjt open-dropdown'])[1]")
     await page.waitForTimeout(2000);
     //Scroll to particular element and increse the Quantity 
-    const element = await page.$("//div[normalize-space()='26']"); 
+    const element = await page.$("//div[normalize-space()='20']"); 
     await element.scrollIntoViewIfNeeded();
     await element.click()
     await page.waitForTimeout(2000);
     await page.getByRole('button', { name: '1' }).click();
     await page.waitForTimeout(2000);
-    await page.click("text= ' View all coupons >>'")
-
-    const elementTwo = await page.$("text= 'TestDisc5'"); 
+    await page.click("text='View all coupons >>'")
+    const elementTwo = await page.getByText('TestDisc5'); 
     await elementTwo.scrollIntoViewIfNeeded();
-    await elementTwo.click()
+   await page.waitForTimeout(2000);
+   await page.click("(//div[@class='coupon-card_coupon-card-apply__28qnu'])[7]")
     await page.waitForTimeout(2000);
-    await page.click(" (//div[@class='coupon-card_coupon-card-apply__28qnu'])[7]")
+    const COD = await page.getByText('Cash on delivery (COD)'); 
+    await COD.scrollIntoViewIfNeeded();
+    await COD.click()
     await page.waitForTimeout(2000);
+     await page.getByText('Place Order').click()
+     //await page.waitForTimeout(6000);
 
-    const elementThree = await page.$("text= ' Cash on delivery (COD)'"); 
-    await elementThree.scrollIntoViewIfNeeded();
-    await elementThree.click()
-    await page.waitForTimeout(2000);
-   
+
+    //  const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
+    //  try {
+    //    await cancelButton.waitFor({ state: 'visible', timeout: 30000 });
+    //    console.log("Cancel Order button is visible.");
+    //    await cancelButton.click();
+    //  } catch (error) {
+    //    console.error("Cancel Order button did not appear within the timeout period.");
+    //  }
+
+    
+//      const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
+//     await cancelButton.waitFor({ state: 'visible', timeout: 2000 });
+//    await  cancelButton.scrollIntoViewIfNeeded();
+//    await cancelButton.click()
+
+// await page.waitForLoadState('networkidle');
+
+//   // Verify if the element is present in the DOM
+//   const elements = await page.$x("//button[normalize-space()='Cancel Order']");
+//   if (elements.length > 0) {
+//     console.log("Cancel Order button is present in the DOM.");
+//   } else {
+//     console.error("Cancel Order button is not present in the DOM.");
+//   }
+
+  // Use locator API and increase timeout
+  const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
+  
+
+
+
+//await page.waitForSelector("//button[normalize-space()='Cancel Order']", { timeout: 10000 });
+
+
    
     });
     
