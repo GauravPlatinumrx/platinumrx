@@ -73,7 +73,7 @@ test('test2', async ({ page }) => {
     //Locator for manualy clicking Submit button.
     //await page.click("//p[@class='login-modal_submitText__zQ9_t']")
     // Search Bar for Seaching Medicine
-    await page.fill("//input[@placeholder='Search your Medicines']","dolo")
+    await page.fill("//input[@placeholder='Search your Medicines']","Thiroace-12.5mcg tab 100's")
     await page.waitForTimeout(2000);
     //Click on Search button in Search Bar
     await page.click("//button[@class='Searchbar_searchBtnLanding__HdOMy']")
@@ -88,11 +88,27 @@ test('test2', async ({ page }) => {
     await page.click("(//div[@class='AddToCartDropdown_arrow__pFEjt open-dropdown'])[1]")
     await page.waitForTimeout(2000);
     //Scroll to particular element and increse the Quantity 
-    const element = await page.$("//div[normalize-space()='11']"); 
+    const element = await page.$("//div[normalize-space()='26']"); 
     await element.scrollIntoViewIfNeeded();
     await element.click()
     await page.waitForTimeout(2000);
-    
+    await page.getByRole('button', { name: '1' }).click();
+    await page.waitForTimeout(2000);
+    await page.click("text= ' View all coupons >>'")
+
+    const elementTwo = await page.$("text= 'TestDisc5'"); 
+    await elementTwo.scrollIntoViewIfNeeded();
+    await elementTwo.click()
+    await page.waitForTimeout(2000);
+    await page.click(" (//div[@class='coupon-card_coupon-card-apply__28qnu'])[7]")
+    await page.waitForTimeout(2000);
+
+    const elementThree = await page.$("text= ' Cash on delivery (COD)'"); 
+    await elementThree.scrollIntoViewIfNeeded();
+    await elementThree.click()
+    await page.waitForTimeout(2000);
+   
+   
     });
     
 // });
