@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-
-// test.describe.serial('Sequential Tests', () => {
+ test.describe.serial('Sequential Tests', () => {
 test('test1', async ({ page }) => {
 // Open WebSite    
 await page.goto('https://flexipill-ui-new-staging.vercel.app')
@@ -53,7 +52,7 @@ await page.waitForTimeout(2000);
 
 
 
-test.only('test2', async ({ page }) => {
+test('test2', async ({ page }) => {
     // Open WebSite    
     await page.goto('https://flexipill-ui-new-staging.vercel.app')
     //click on login buttton
@@ -101,41 +100,39 @@ test.only('test2', async ({ page }) => {
     await elementTwo.scrollIntoViewIfNeeded();
    await page.waitForTimeout(2000);
    await page.click("(//div[@class='coupon-card_coupon-card-apply__28qnu'])[7]")
-
-
-
     await page.waitForTimeout(2000);
-
     const COD =  page.getByText('Cash on delivery (COD)'); //Cash on delivery (COD)
     await expect(COD).toBeVisible();
     await COD.scrollIntoViewIfNeeded();
     await COD.click()
     await page.waitForTimeout(2000);
      await page.getByText('Place Order').click()
-    // await page.waitForTimeout(6000);
-
-
-    //  const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
-    //  try {
-    //    await cancelButton.waitFor({ state: 'visible', timeout: 30000 });
-    //    console.log("Cancel Order button is visible.");
-    //    await cancelButton.click();
-    //  } catch (error) {
-    //    console.error("Cancel Order button did not appear within the timeout period.");
-    //  }
-    await page.waitForTimeout(7000);
-
-     const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
-     await expect(cancelButton).toBeVisible();
-   await  cancelButton.scrollIntoViewIfNeeded();
-   await cancelButton.click()
-
-//await page.waitForSelector("//button[normalize-space()='Cancel Order']", { timeout: 10000 });
-
-
    
     });
+
+
+
+
+    test.only('test3', async ({ page }) => {
+        // Open WebSite    
+        await page.goto('https://flexipill-ui-new-staging.vercel.app')
+        //click on login buttton
+        await page.click("//a[normalize-space()='Login']")
+        // For entering Number
+        await page.fill("//input[@placeholder='Enter your number']", "1111111111")
+        //Continue Button
+        await page.click("text='Continue'");
+        // another locator for Contnue Button
+        //await page.click("//p[@class='MuiTypography-root MuiTypography-body1 platinumrx-1bx7d16']")
+        // For Entering OTP
+        await page.getByRole('textbox').first().click();
+        await page.getByRole('textbox').first().fill('1');
+        await page.getByRole('textbox').nth(1).fill('1');
+        await page.getByRole('textbox').nth(2).fill('1');
+        await page.getByRole('textbox').nth(3).fill('1');
+
+    });
     
-// });
+ });
     
     
