@@ -89,23 +89,30 @@ test.only('test2', async ({ page }) => {
     await page.waitForTimeout(2000);
     //Scroll to particular element and increse the Quantity 
     const element = await page.$("//div[normalize-space()='20']"); 
-    await element.scrollIntoViewIfNeeded();
-    await element.click()
+    element.scrollIntoViewIfNeeded();
+    element.click()
     await page.waitForTimeout(2000);
     await page.getByRole('button', { name: '1' }).click();
     await page.waitForTimeout(2000);
     await page.click("text='View all coupons >>'")
-    const elementTwo = await page.getByText('TestDisc5'); 
+    const elementTwo = page.getByText('TestDisc5'); 
+
+    await expect(elementTwo).toBeVisible();
     await elementTwo.scrollIntoViewIfNeeded();
    await page.waitForTimeout(2000);
    await page.click("(//div[@class='coupon-card_coupon-card-apply__28qnu'])[7]")
+
+
+
     await page.waitForTimeout(2000);
-    const COD = await page.getByText('Cash on delivery (COD)'); 
+
+    const COD =  page.getByText('Cash on delivery (COD)'); //Cash on delivery (COD)
+    await expect(COD).toBeVisible();
     await COD.scrollIntoViewIfNeeded();
     await COD.click()
     await page.waitForTimeout(2000);
      await page.getByText('Place Order').click()
-     //await page.waitForTimeout(6000);
+    // await page.waitForTimeout(6000);
 
 
     //  const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
@@ -116,28 +123,12 @@ test.only('test2', async ({ page }) => {
     //  } catch (error) {
     //    console.error("Cancel Order button did not appear within the timeout period.");
     //  }
+    await page.waitForTimeout(7000);
 
-    
-//      const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
-//     await cancelButton.waitFor({ state: 'visible', timeout: 2000 });
-//    await  cancelButton.scrollIntoViewIfNeeded();
-//    await cancelButton.click()
-
-// await page.waitForLoadState('networkidle');
-
-//   // Verify if the element is present in the DOM
-//   const elements = await page.$x("//button[normalize-space()='Cancel Order']");
-//   if (elements.length > 0) {
-//     console.log("Cancel Order button is present in the DOM.");
-//   } else {
-//     console.error("Cancel Order button is not present in the DOM.");
-//   }
-
-  // Use locator API and increase timeout
-  const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
-  
-
-
+     const cancelButton = page.locator("//button[normalize-space()='Cancel Order']");
+     await expect(cancelButton).toBeVisible();
+   await  cancelButton.scrollIntoViewIfNeeded();
+   await cancelButton.click()
 
 //await page.waitForSelector("//button[normalize-space()='Cancel Order']", { timeout: 10000 });
 

@@ -1,6 +1,10 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 
+
+
+
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -13,6 +17,7 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
+  timeout: 30000, // Sets the default timeout to 30 seconds (30000 milliseconds)
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
@@ -30,6 +35,8 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
+
+ 
 
   /* Configure projects for major browsers */
   projects: [
