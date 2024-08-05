@@ -110,9 +110,6 @@ test.only('test2', async ({ page }) => {
    
     });
 
-
-
-
     test('test3', async ({ page }) => {
         // Open WebSite    
         await page.goto('https://flexipill-ui-new-staging.vercel.app')
@@ -132,7 +129,6 @@ test.only('test2', async ({ page }) => {
         await page.getByRole('textbox').nth(3).fill('1');
 
     });
-
     test('test4', async ({ page }) => {
         // Open WebSite    
         await page.goto('https://flexipill-ui-new-staging.vercel.app')
