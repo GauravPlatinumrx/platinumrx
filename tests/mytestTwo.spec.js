@@ -52,7 +52,7 @@ await page.waitForTimeout(2000);
 
 
 
-test('test2', async ({ page }) => {
+test.only('test2', async ({ page }) => {
     // Open WebSite    
     await page.goto('https://flexipill-ui-new-staging.vercel.app')
     //click on login buttton
@@ -113,7 +113,7 @@ test('test2', async ({ page }) => {
 
 
 
-    test.only('test3', async ({ page }) => {
+    test('test3', async ({ page }) => {
         // Open WebSite    
         await page.goto('https://flexipill-ui-new-staging.vercel.app')
         //click on login buttton
@@ -132,6 +132,27 @@ test('test2', async ({ page }) => {
         await page.getByRole('textbox').nth(3).fill('1');
 
     });
+
+    test('test4', async ({ page }) => {
+        // Open WebSite    
+        await page.goto('https://flexipill-ui-new-staging.vercel.app')
+        //click on login buttton
+        await page.click("//a[normalize-space()='Login']")
+        // For entering Number
+        await page.fill("//input[@placeholder='Enter your number']", "1111111111")
+        //Continue Button
+        await page.click("text='Continue'");
+        // another locator for Contnue Button
+        //await page.click("//p[@class='MuiTypography-root MuiTypography-body1 platinumrx-1bx7d16']")
+        // For Entering OTP
+        await page.getByRole('textbox').first().click();
+        await page.getByRole('textbox').first().fill('1');
+        await page.getByRole('textbox').nth(1).fill('1');
+        await page.getByRole('textbox').nth(2).fill('1');
+        await page.getByRole('textbox').nth(3).fill('1');
+
+    });
+
     
  });
     
