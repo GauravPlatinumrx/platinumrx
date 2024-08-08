@@ -2,6 +2,7 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 
+  
 
 
 
@@ -34,9 +35,10 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-  },
 
- 
+    headless: true, // Ensure tests run in headless mode for CI
+    baseURL: 'https://flexipill-ui-new-staging.vercel.app/', // Set the base URL for your application
+  },
 
   /* Configure projects for major browsers */
   projects: [
